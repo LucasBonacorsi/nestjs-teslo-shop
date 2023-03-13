@@ -8,6 +8,7 @@ import { FilesModule } from './files/files.module';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { AuthModule } from './auth/auth.module';
+import { MessagesWsModule } from './messages-ws/messages-ws.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ ServeStaticModule.forRoot({
     SeedModule,
     FilesModule,
     AuthModule,
-  ],
+    MessagesWsModule,
+  ]
 })
 export class AppModule {}
