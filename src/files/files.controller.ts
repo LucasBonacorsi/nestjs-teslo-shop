@@ -15,18 +15,23 @@ import { fileFilter, fileNamer } from './helpers';
 import { Response } from 'express';
 import File = Express.Multer.File;
 import { ConfigService } from '@nestjs/config';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Files')
 @Controller('files')
 export class FilesController {
   constructor(
     private readonly filesService: FilesService,
-    private readonly configService: ConfigService
-    ) {}
+    private readonly configService: ConfigService,
+  ) {}
 
   @Get('product/:imageName')
-  findProductImage(@Res() res: Response, @Param('imageName') imageName: string) {
+  findProductImage(
+    @Res() res: Response,
+    @Param('imageName') imageName: string,
+  ) {
     const path = this.filesService.getStaticProductImage(imageName);
-    res.sendFile(path)
+    res.sendFile(path);
   }
 
   @Post('product')
@@ -40,12 +45,12 @@ export class FilesController {
     }),
   )
   uploadProductImage(@UploadedFile() file: File) {
-    console.log({ fileController: file });
-
     if (!file) {
       throw new BadRequestException('Make sure  that the file is an image');
     }
-    const secureURL = `${this.configService.get('HOST_API')}/files/products/${file.filename}`;
+    const secureURL = `${this.configService.get('HOST_API')}/files/products/${
+      file.filename
+    }`;
     return {
       secureURL,
     };

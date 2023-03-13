@@ -1,3 +1,4 @@
+<h1>Teslo</h1>
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -14,9 +15,11 @@
 docker-compose up -d
 ```
 
-6. Ejecutar SEED 
+
+6. Levantar: ```yarn start:dev```
+
+7. Ejecutar SEED 
 ```
 http://localhost:3000/api/seed
 ```
 
-7. Levantar: ```yarn start:dev```
