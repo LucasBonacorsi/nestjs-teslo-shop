@@ -1,1 +1,47 @@
-<h1>Hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teslo shop</title>
+  </head>
+  <body>
+    <h1>LOGIN</h1>
+    <div>
+      <label for="email"
+        >Email
+        <input type="email" name="email" id="email" />
+      </label>
+    </div>
+    <div>
+      <label for="password">Contraseña</label>
+      <input type="password" name="password" id="password" />
+    </div>
+
+    <button onclick="login()">Iniciar sesion</button>
+
+    <script>
+      function login() {
+        const emailInput = document.getElementById('email');
+        const passInput = document.getElementById('password');
+
+        fetch(`http://localhost:8080/api/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: emailInput.value,
+            password: passInput.value,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem('token', data.token);
+          })
+          .catch((err) => console.log(err));
+      }
+    </script>
+  </body>
+</html>
