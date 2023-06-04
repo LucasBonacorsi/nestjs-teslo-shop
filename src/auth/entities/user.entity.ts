@@ -11,7 +11,7 @@ import {
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column('text', { unique: true })
   email: string;
@@ -22,7 +22,7 @@ export class User {
   @Column('text')
   fullName: string;
 
-  @Column('text', { default: true })
+  @Column('boolean' , { default: true })
   isActive: boolean;
 
   @Column('text', {
